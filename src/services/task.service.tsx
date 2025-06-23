@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { TaskCreate, TaskResponse, TaskUpdate } from 'types/task';
 
-const API_BASE_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_SERVER_URL.replace(/\/+$/, ''); // Xoá dấu / cuối
 
 export const createTask = async (task: TaskCreate): Promise<TaskResponse> => {
   const response = await axios.post<TaskResponse>(`${API_BASE_URL}/task/create`, task);
